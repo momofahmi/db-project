@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+{% block title %}Games{% endblock %}
+{% block content %}
+
+    <br>
+    <section id="games">
+        <h1 style="text-align: center;">Game Datas</h1>
+    </section>
+
+    <div class="game_sidebar"> <!--for search of table-->
+      <form id="filter_potato">
+        <button type="button" class="accordion">Competitions</button>
+          <div class="game_list">
+              {% for value in game_competitions %}
+                <label><input type="checkbox" name="comp" value="{{value[0]}}" {% if value[0] in game_competitions_list %} checked {% endif %} />{{ value[1] }}</label>
+              {% endfor %}
+          </div>
+        <button type="button" class="accordion">Seasons</button>
+          <div class="game_list">
+              {% for value in game_season %}
+                <label><input type="checkbox" name="game_season" value="{{value[0]}}" {% if value[0]|string in game_season_list %} checked {% endif %} />{{ value[0] }}</label>
+              {% endfor %}
+          </div>
+        <button type="button" class="accordion">Game Round</button>
+          <div class="game_list">
+              {% for value in game_rounds %}
+                <label><input type="checkbox" name="game_rounds" value="{{value[0]}}" {% if value[0] in game_rounds_list %} checked {% endif %} />{{ value[0] }}</label>
+              {% endfor %}
+          </div>
+        <button type="button" class="accordion">Clubs</button>
+          <div class="game_list">
+              {% for value in game_clubs %}
+                <label><input type="checkbox" name="game_clubs" value="{{value[0]}}" {% if value[0]|string in game_clubs_list %} checked {% endif %} />{{ value[1] }}</label>
+              {% endfor %}
+          </div>
+          <label>Page: <input type="text" name="page" value="{{page_num}}"/></label>
+          <input type="submit" class="search" value="Search" />
+      </form>
+    </div>
+
+    <table class="game_table"> <!--This part is placeholder for tables - Update: Not anymore -->
+      <thead>
+        <tr>
+          <th>COMPETITION</th>
+          <th>GAME ROUND</th>
+          <th>HOME CLUB</th>
+          <th>SCORES</th>
+          <th>AWAY CLUB</th>
+          <th>DATE</th>
+          <th>DETAILS</th>
+          <th><a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm btn-success mx-2"><i class="fas fa-plus"></i></a></th>
+        </tr>
+      </thead>
+      <tbody class="game_table_body">
+        {% for value in game_games %}
+        <tr>
+          <td>{{value[1]}}</td>
+          <td>{{value[2]}}</td>
+          <td>{{value[3]}}</td>
+          <td>{{value[4]}} - {{value[5]}}</td>
+          <td>{{value[6]}}</td>
+          <td>{{value[7]}}</td>
+          <td><a href="./games_details/{{value[0]}}" class="btn btn-sm btn-secondary"><i class="fas fa-info-circle"></i></a></td>
+          <td><a href="./games_delete?game_id={{value[0]}}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this game?');"><i class="fas fa-trash"></i></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add New Game</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="./games" method="POST">
+          <div class="modal-body">
+              <div class="form-outline mb-4">
+                <label>Season: <input type="text" name="season" placeholder="2012, 2013 etc." autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Game Round: <input type="text" name="game_round" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Date: <input type="text" name="date" placeholder="yyyy-mm-dd" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Home Club Name: <input type="text" name="home_club_name" required autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Away Club Name: <input type="text" name="away_club_name" required autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Home Club Goals: <input type="text" name="home_club_goals" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Away Club Goals: <input type="text" name="away_club_goals" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Home Club Position: <input type="text" name="home_club_position" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Away Club Position: <input type="text" name="away_club_position" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Home Club Manager: <input type="text" name="home_club_manager" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Away Club Manager: <input type="text" name="away_club_manager" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Stadium: <input type="text" name="stadium" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Attendance: <input type="text" name="attendance" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Referee: <input type="text" name="referee" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Home Club Formation: <input type="text" name="home_club_formation" placeholder="4-2-3-1, 4-3-3 Atttacking etc." autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Away Club Formation: <input type="text" name="away_club_formation" placeholder="4-2-3-1, 4-3-3 Atttacking etc." autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Competition Type: <input type="text" name="competition_type" autocomplete="off"/></label>
+              </div>
+              <div class="form-outline mb-4">
+                <label>Competition ID: <select name="competition_id" > {% for value in game_competitions %}
+                  <option value="{{ value[0] }}">{{ value[1] }}</option>
+                  {% endfor %}
+                </select>
+                </label>
+              </div>
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+          </form>
+      </div>
+      </div>
+  </div>
+
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+      
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+        });
+      }
+
+    </script>
+
+{% endblock %}

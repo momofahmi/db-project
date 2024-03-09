@@ -1,0 +1,220 @@
+{% extends "layout.html" %}
+{% block title %}Competitions{% endblock %}
+{% block content %}
+
+<section id="Competitions">
+    <h1>Show the List of Competitions</h1>
+</section>
+<div class = top>
+<div class="country_search">
+    <form method="post" action="{{ url_for('competitions') }}">
+        <label for="country">Country</label>
+        <select id="country_search" name="country">
+            <option value="" selected>International</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Denmark">Denmark</option>
+            <option value="England">England</option>
+            <option value="Germany">Germany</option>
+            <option value="Greece">Greece</option>
+            <option value="Italy">Italy</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Russia">Russia</option>
+            <option value="Scotland">Scotland</option>
+            <option value="Spain">Spain</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Ukraine">Ukraine</option>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div>
+    <a href="{{ url_for('create_tournament') }}" class="create-tournament-link">Create Tournament</a>
+</div>
+</div>
+<div class="country_result">
+    {% if competition %}
+        <table id="competition_result_table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Country Name</th>
+                    <th>ID</th>
+                    <th>Ban Competition</th>
+                    <th>New Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for each in competition %}
+                <form method="post" action="{{ url_for('change_competition') }}">
+                    <tr>
+                        <td>{{ each[0] }}</td>
+                        <td>{{ each[1] }}</td>
+                        <td>{{ each[2] }}</td>
+                        <td>{{ each[3] }}</td>
+                        <td>
+                            <input type="hidden" name="id" value="{{ each[3] }}">
+                            <button type="submit" class="ban_id" name = "ban_id">Ban</button>
+                        </td>
+                        <td>
+                            <input type="hidden" name="id" value="{{ each[3] }}">
+                            <input type="text" id="name", name="name">
+                            <button type="submit" class="new_name" name = "new_name">Change Name</button>
+                        </td>
+                    </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+   
+    {% endif %}
+</div>
+
+
+<style>
+    
+    .top {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .country_search {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    .create-tournament-link {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #2196F3;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    p {
+        color: #555;
+    }
+
+    .country_search {
+    margin-right: 20px; /* Add margin to create space between search and link */
+    }
+
+    .country_result {
+    margin: 0px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+}
+
+    form {
+        display: flex;
+        align-items: center;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+
+    select, button {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-right: 10px;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .country_result {
+        margin-top: 20px;
+    }
+
+    table {
+        margin: 0 auto; /* Center the table horizontally */
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+    }
+
+    .new_name {
+        padding: 8px;
+        font-size: 12px;
+        background-color: #f44336;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .action-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ban_id {
+        background-color: #f44336;
+        padding: 15px;
+        line-height: 0px;
+        font-size: 16px;
+        width: 100px;
+        height: 30px;
+        border: none;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+    .create-tournament-link {
+        display: block;
+        margin-top: 15px;
+        padding: 10px;
+        width: 200px;
+        background-color: #2196F3;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .center-align {
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+</style>
+{% endblock %}

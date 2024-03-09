@@ -1,0 +1,48 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futbalmania - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="../static/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<section class="container my-5">
+    <div class="card">
+        <div class="card-header">
+            Edit Player Details
+        </div>
+        <form action="{{ url_for('edit_game_event', event_id=game_details.game_event_id, game_id=game_id  ) }}" method="post">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="clubs_name" class="form-label"> clubs_name </label>
+                    <input type="text" class="form-control" id="clubs_name" name="clubs_name" value="{{ game_details.clubs_name }}">
+
+                    <label for="minute" class="form-label"> minute </label>
+                    <input type="text" class="form-control" id="minute" name="minute" value="{{ game_details.minute }}">
+
+                    <label for="game_events_type" class="form-label"> game_events_type </label>
+                    <select name="game_events_type" class="form-control">
+                        <option value="Cards" {% if game_details.game_events_type in event_type[0] %} selected {% endif %}>Cards</option>
+                        <option value="Substitutions" {% if game_details.game_events_type in event_type[1] %} selected {% endif %}>Substitutions</option>
+                        <option value="Goals" {% if game_details.game_events_type in event_type[2] %} selected {% endif %}>Goals</option>
+                        <option value="Others" {% if game_details.game_events_type in event_type[3] %} selected {% endif %}>Others</option>
+                    </select>
+
+                    <label for="description" class="form-label"> description </label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{ game_details.description }}">
+
+                    <label for="player_name" class="form-label"> player_name </label>
+                    <input type="text" class="form-control" id="" name="player_name" value="{{ game_details.player_name }}">
+
+                    <label for="player_in_name" class="form-label"> player_in_name </label>
+                    <input type="text" class="form-control" id="player_in_name" name="player_in_name" value="{{ game_details.player_in_name }}">
+
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</section>
+

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}Add Appearance{% endblock %}
+{% block content %}
+<section class="container my-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Add New Appearance</h3>
+        </div>
+        <form action="{{ url_for('add_appearance') }}" method="post">
+            <div class="card-body">
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> You need to write an Appearance ID that doesn't exist in the table.The Player Club ID, the Game ID, the Player ID and the Competition ID needs to exist already . Players_name and Player Current Club Name will be deducted from Player ID.
+                </div>
+                <div class="mb-3">
+                    <label for="appearance_id" class="form-label">Appearance ID</label>
+                    <input type="text" class="form-control" id="appearance_id" name="appearance_id" required>
+
+                    <label for="game_id" class="form-label">Game ID</label>
+                    <input type="text" class="form-control" id="game_id" name="game_id" required>
+
+                    <label for="player_id" class="form-label">Player ID</label>
+                    <input type="text" class="form-control" id="player_id" name="player_id" required>
+
+                    <label for="player_club_id" class="form-label">Player Club ID</label>
+                    <input type="text" class="form-control" id="player_club_id" name="player_club_id">
+
+                    <label for="appearances_date" class="form-label">Appearances Date</label>
+                    <input type="date" class="form-control" id="appearances_date" name="appearances_date" required>
+
+                    <label for="competition_id" class="form-label">Competition ID</label>
+                    <input type="text" class="form-control" id="competition_id" name="competition_id">
+
+                    <label for="yellow_cards" class="form-label">Yellow Cards</label>
+                    <input type="number" class="form-control" id="yellow_cards" name="yellow_cards">
+
+                    <label for="red_cards" class="form-label">Red Cards</label>
+                    <input type="number" class="form-control" id="red_cards" name="red_cards">
+
+                    <label for="goals" class="form-label">Goals</label>
+                    <input type="number" class="form-control" id="goals" name="goals">
+
+                    <label for="assists" class="form-label">Assists</label>
+                    <input type="number" class="form-control" id="assists" name="assists">
+
+                    <label for="minutes_played" class="form-label">Minutes Played</label>
+                    <input type="number" class="form-control" id="minutes_played" name="minutes_played">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Appearance</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

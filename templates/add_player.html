@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block title %}Add New Player{% endblock %}
+{% block content %}
+<section class="container my-5">
+    <div class="card">
+        <div class="card-header">
+            Add New Player
+        </div>
+        <form action="{{ url_for('add_player') }}" method="post">
+            <div class="card-body">
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> The player_id will be added automatically(by incrementing by one the max player_id).You need to fill all the fields (no need for image_url if you dont have one) . Current Club name need to exist in the clubs table.Thanks to that , we will be able to deduct the player's club_id and domestic_competition_id.
+                </div>
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ player.first_name }}">
+
+                    
+                    <label for="last_name" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ player.last_name }}">
+
+                    <label for="players_name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="players_name" name="players_name" value="{{ player.players_name }}">
+
+                    <label for="last_season" class="form-label">Last Season</label>
+                    <input type="text" class="form-control" id="last_season" name="last_season" value="{{ player.last_season }}">
+
+                    <label for="player_code" class="form-label">Player Code</label>
+                    <input type="text" class="form-control" id="player_code" name="player_code" value="{{ player.player_code }}">
+
+                    
+                    <label for="country_of_birth" class="form-label">Country of Birth</label>
+                    <input type="text" class="form-control" id="country_of_birth" name="country_of_birth" value="{{ player.country_of_birth }}">
+
+                    <label for="city_of_birth" class="form-label">City of Birth</label>
+                    <input type="text" class="form-control" id="city_of_birth" name="city_of_birth" value="{{ player.city_of_birth }}">
+
+                    <label for="country_of_citizenship" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="country_of_citizenship" name="country_of_citizenship" value="{{ player.country_of_citizenship }}">
+
+
+                    <label for="date_of_birth" class="form-label">Date of Birth</label>
+                    <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ player.date_of_birth }}">
+
+                    <label for="sub_position" class="form-label">Sub-Position</label>
+                    <input type="text" class="form-control" id="sub_position" name="sub_position" value="{{ player.sub_position }}">
+
+                    <label for="position" class="form-label">Position</label>
+                    <input type="text" class="form-control" id="position" name="position" value="{{ player.position }}">
+
+                    <label for="foot" class="form-label">Preferred Foot</label>
+                    <input type="text" class="form-control" id="foot" name="foot" value="{{ player.foot }}">
+
+                    <label for="height_in_cm" class="form-label">Height</label>
+                    <input type="text" class="form-control" id="height_in_cm" name="height_in_cm" value="{{ player.height_in_cm }}">
+
+                    <label for="market_value_in_eur" class="form-label">Market Value</label>
+                    <input type="text" class="form-control" id="market_value_in_eur" name="market_value_in_eur" value="{{ player.market_value_in_eur }}">
+
+
+                    <label for="highest_market_value_in_eur" class="form-label">Highest Market Value</label>
+                    <input type="text" class="form-control" id="highest_market_value_in_eur" name="highest_market_value_in_eur" value="{{ player.highest_market_value_in_eur }}">
+
+                    <label for="contract_expiration_date" class="form-label">Contract Expiration Date</label>
+                    <input type="text" class="form-control" id="contract_expiration_date" name="contract_expiration_date" value="{{ player.contract_expiration_date }}">
+
+                    <label for="agent_name" class="form-label">Agent</label>
+                    <input type="text" class="form-control" id="agent_name" name="agent_name" value="{{ player.agent_name }}">
+
+                    <label for="image_url" class="form-label">Image URL</label>
+                    <input type="text" class="form-control" id="image_url" name="image_url" value="{{ player.image_url }}">
+                    
+                    <label for="current_club_name" class="form-label">Current Club name</label>
+                    <input type="text" class="form-control" id="current_club_name" name="current_club_name" value="{{ player.current_club_name }}">
+                    
+                </div>
+                <button type="submit" class="btn btn-primary">Add Player</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

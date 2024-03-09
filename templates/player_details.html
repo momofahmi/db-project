@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}Player Details{% endblock %}
+{% block content %}
+<section class="container my-5">
+    <div class="card">
+        <div class="row no-gutters">
+                <div class="card-header">
+                    <a href="{{ url_for('edit_player', player_id=player.player_id) }}" class="btn btn-outline-secondary float-end">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </div>
+            <div class="col-md-5">
+                <img src="{{ player.image_url }}" alt="{{ player.players_name }}" class="img-fluid w-100 h-auto rounded-left">
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h3 class="card-title">{{ player.players_name }}</h3>
+                    <p class="card-text"><strong>First Name:</strong> {{ player.first_name }}</p>
+                    <p class="card-text"><strong>Last Name:</strong> {{ player.last_name }}</p>
+                    <p class="card-text"><strong>Height:</strong> {{ player.height_in_cm }} cm</p>
+                    <p class="card-text"><strong>Preferred Foot:</strong> {{ player.foot }}</p>
+                    <p class="card-text"><strong>Date of Birth:</strong> {{ player.date_of_birth }}</p>
+                    <p class="card-text"><strong>Country:</strong> {{ player.country_of_citizenship }}</p>
+                    <p class="card-text"><strong>Position:</strong> {{ player.position }}</p>
+                    <p class="card-text"><strong>Sub-Position:</strong> {{ player.sub_position }}</p>
+                    <p class="card-text"><strong>Last Season:</strong> {{ player.last_season }}</p>
+                    <p class="card-text"><strong>Market Value:</strong> €{{ player.market_value_in_eur }}</p>
+                    <p class="card-text"><strong>Club:</strong> {{ player.current_club_name }}</p>
+                    <p class="card-text"><strong>Competition:</strong> {{ player.competitions_name }}</p>
+                    <p class="card-text"><strong>Agent:</strong> {{ player.agent_name }}</p>
+                    
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>
+                                <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAdditionalInfo" aria-expanded="true" aria-controls="collapseAdditionalInfo">
+                                    Other Information
+                                </button>
+                            </h5>
+                        </div>
+                
+                        <div id="collapseAdditionalInfo" class="collapse" aria-labelledby="headingOne">
+                            <div class="card-body">
+                                <p class="card-text"><strong>Player ID:</strong> {{ player.player_id }}</p>
+                                <p class="card-text"><strong>Current Club ID:</strong> {{ player.current_club_id }}</p>
+                                <p class="card-text"><strong>Player Code:</strong> {{ player.player_code }}</p>
+                                <p class="card-text"><strong>Country of Birth:</strong> {{ player.country_of_birth }}</p>
+                                <p class="card-text"><strong>City of Birth:</strong> {{ player.city_of_birth }}</p>
+                                <p class="card-text"><strong>Highest Market Value:</strong> €{{ player.highest_market_value_in_eur }}</p>
+                                <p class="card-text"><strong>Contract Expiration Date:</strong> {{ player.contract_expiration_date }}</p>
+                                <p class="card-text"><strong>Image URL:</strong> {{ player.image_url }}</p>
+                                <p class="card-text"><strong>Competition ID:</strong> {{ player.current_club_domestic_competition_id }}</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

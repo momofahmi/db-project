@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block title %}Update Market Value{% endblock %}
+{% block content %}
+
+<section id="update_home">
+    <h1>Update the Value of a Player</h1>
+</section>
+
+<div class="update_player_market_value">
+    <form method="post", action="{{ url_for('update_market_value') }}">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname">
+        
+        <label for="team">Team</label>
+        <input type="text" id="team" name="team">
+
+        <label for="value">Value</label>
+        <input type="number" id="value" name="value">
+
+        <button type="submit" name="insert">Update Market Value</button>
+        <button type="submit" name="update">Correct Last Valuation</button>
+        <button type="submit" name="delete">Delete Last Valuation</button>
+    </form>
+</div>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    #update_home {
+        text-align: center;
+        margin-top: 10px;
+        background-color: #333;
+        color: #fff;
+    }
+
+    .update_player_market_value {
+        max-width: 300px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        display: grid;
+        gap: 15px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+</style>
+{% endblock %}

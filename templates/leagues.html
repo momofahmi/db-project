@@ -1,0 +1,134 @@
+<!-- FILEPATH: /media/kaleab/Until I win/third time is the charm/Database/Project/itudb2305/templates/leagues.html -->
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <section id="home">
+        <h1>Welcome to Our Website</h1>
+        <form id="yearForm">
+            <label for="year">Choose a Year:</label>
+            <select id="year" name="year" onchange="updateTable()">
+                <option value="{{ leaguesseason[0]}}">2023</option>
+                <option value="{{ leaguesseason[1]}}">2022</option>
+                <option value="{{ leaguesseason[2]}}">2021</option>
+                <option value="{{ leaguesseason[3]}}">2020</option>
+                <option value="{{ leaguesseason[4]}}">2019</option>
+                <option value="{{ leaguesseason[5]}}">2018</option>
+                <option value="{{ leaguesseason[6]}}">2017</option>
+                <option value="{{ leaguesseason[7]}}">2016</option>
+                <option value="{{ leaguesseason[8]}}">2015</option>
+                <option value="{{ leaguesseason[9]}}">2014</option>
+                <option value="{{ leaguesseason[10]}}">2013</option>
+                <option value="{{ leaguesseason[11]}}">2012</option>
+
+
+                 <!-- Add more options for other years if needed -->
+            </select>
+        </form>
+
+        <!-- Choose the league -->
+        <form id="leagueForm">
+            <label for="league">Choose a League:</label>
+            <select id="league" name="league" onchange="updateTable()">
+                <option value="{{ leaguesnamelist[4] }}">Premier League</option>
+                <option value="{{ leaguesnamelist[2] }}">La Liga</option>
+                <option value="{{ leaguesnamelist[7] }}">Bundesliga</option>
+                <option value="{{ leaguesnamelist[6] }}">Serie A</option>
+                <option value="{{ leaguesnamelist[3] }}">Ligue 1</option>
+                <option value="{{ leaguesnamelist[12] }}">Super Lig</option>
+                <option value="{{ leaguesnamelist[8] }}">Eredivisie</option>
+                <option value="{{ leaguesnamelist[0] }}">Belgian First Division A</option>
+                <option value="{{ leaguesnamelist[1] }}">Danish Superliga</option>
+                <option value="{{ leaguesnamelist[5] }}">Super League Greece</option>
+                <option value="{{ leaguesnamelist[9] }}">Primeira Liga</option>
+                <option value="{{ leaguesnamelist[10] }}">Russian Premier League</option>
+                <option value="{{ leaguesnamelist[11] }}">Scottish Premiership</option>
+                <option value="{{ leaguesnamelist[13] }}">Ukrainian Premier League</option>
+
+                <!-- Add more options for other leagues if needed -->
+            </select>
+        </form>
+        <!-- choose the league -->
+        
+        <table class="league-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Club</th>
+                    <th>MP</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GF</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+            <tbody>    
+                {% for league in result %}
+                    <tr>
+                        <td> {{ loop.index }} </td>
+                        <td>{{ league[0] }}</td>
+                        <td>{{ league[1] }}</td>
+                        <td>{{ league[2] }}</td>
+                        <td>{{ league[3] }}</td>
+                        <td>{{ league[4] }}</td>
+                        <td>{{ league[5] }}</td>
+                        <td>{{ league[6] }}</td>
+                        <td>{{ league[7] }}</td>
+                        <td>{{ league[8] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function updateTable() {
+            var year = document.getElementById("year").value;
+            var league = document.getElementById("league").value;
+            //alert("You have selected the year " + year + " and the league " + league);
+            // Redirect to the appropriate URL based on the selected values
+            window.location.href = "/leagues?league=" + league + "&season=" + year;
+            
+            localStorage.setItem("selectedYear", year);
+            localStorage.setItem("selectedLeague", league);
+    }
+
+    // Set the default value of the dropdown to the last selected value
+    var selectedYear = localStorage.getItem("selectedYear");
+    if (selectedYear) {
+        document.getElementById("year").value = selectedYear;
+    }
+
+    var selectedLeague = localStorage.getItem("selectedLeague");
+    if (selectedLeague) {
+        document.getElementById("league").value = selectedLeague;
+    }
+            
+        
+    </script>
+
+
+    <style>
+        .league-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .league-table th, .league-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .league-table th {
+            background-color: #f2f2f2;
+        }
+
+        .league-table tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block title %}Add New Player{% endblock %}
+{% block content %}
+<section class="container my-5">
+    <div class="card">
+        <div class="card-header">
+            Add New Club
+        </div>
+        <form action="{{ url_for('add_club') }}" method="post">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="clubs_name" class="form-label">Club Code</label>
+                    <input type="text" class="form-control" id="clubs_name" name="clubs_name" value="{{ club.clubs_name }}">
+                    
+                    <label for="club_code" class="form-label">Club Name</label>
+                    <input type="text" class="form-control" id="club_code" name="club_code" value="{{ club.club_code}}">
+                    
+                    <p></p>
+                    <label for="domestic_competition_id" class="form-label">Country</label>
+                    <select  id="domestic_competition_id" name="domestic_competition_id">
+                        {% for i,j in countrycode %}
+                            <option value="{{ j }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <p></p>
+                    <label for="total_market_value" class="form-label">total_market_value</label>
+                    <input type="text" class="form-control" id="total_market_value" name="total_market_value" value="{{ club.total_market_value }}">
+
+
+                    <label for="squad_size" class="form-label">Squad Size</label>
+                    <input type="number" class="form-control" id="squad_size" name="squad_size" value="{{ club.squad_size }}">
+
+                    <label for="average_age" class="form-label">Average age</label>
+                    <input type="number" class="form-control" id="average_age" name="average_age" value="{{ club.average_age }}">
+
+                    <label for="foreigners_number" class="form-label">Foreigners Number</label>
+                    <input type="number" class="form-control" id="player_code" name="foreigners_number" value="{{ club.foreigners_number }}">
+
+                    <label for="foreigners_percentage" class="form-label">Foreigners Percentage</label>
+                    <input type="number" class="form-control" id="player_code" name="foreigners_percentage" value="{{ club.foreigners_percentage }}">
+
+                    <label for="national_team_players" class="form-label">National Team Player</label>
+                    <input type="number" class="form-control" id="national_team_players" name="national_team_players" value="{{ club.national_team_players }}">
+
+                    <label for="stadium_name" class="form-label">Stadium Name</label>
+                    <input type="text" class="form-control" id="stadium_name" name="stadium_name" value="{{ club.stadium_name }}">
+
+                    <label for="stadium_seats" class="form-label">Stadium Seats</label>
+                    <input type="int" class="form-control" id="stadium_seats" name="stadium_seats" value="{{ club.stadium_seats }}">
+
+
+                    <label for="net_transfer_record" class="form-label">Net Transfer Record</label>
+                    <input type="text" class="form-control" id="net_transfer_record" name="net_transfer_record" value="{{ club.net_transfer_record }}">
+
+
+                    <label for="coach_name" class="form-label">Coach Name</label>
+                    <input type="text" class="form-control" id="coach_name" name="coach_name" value="{{ club.coach_name }}">
+
+                    <label for="last_season" class="form-label">Last Season</label>
+                    <input type="text" class="form-control" id="last_season" name="last_season" value="{{ club.last_season }}">
+
+                       
+                </div>
+                <button type="submit" class="btn btn-primary">Add Club</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

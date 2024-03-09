@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block title %}Player{% endblock %}
+{% block content %}
+    <section id="player">
+        <style>
+            .a ccordion-item {
+                margin-bottom: 10px; /* Adjust the value as needed */
+                width: 50%;
+            }
+        </style>
+
+
+
+        <h1>Welcome to Our Club games page</h1>
+        <h1>Games Data</h1>
+        
+      
+
+        <p>
+            {% for row in result %}
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ loop.index }}">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+                                {{ row[0] }}
+                                &nbsp;
+                                {{ row[2] }}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                {{ row[3] }}
+                                &nbsp;
+                                {{ row[1] }}
+                                &nbsp;
+                                                                                             
+                               
+                            </button>
+
+                                
+                        </h2>
+                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">{{ row[4] }}</th>
+                                            <th scope="col"> {{ row[6] }}</th>
+                                            <th scope="col">{{ row[5] }}</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                    <tbody>
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </p>
+        
+        
+    </section>
+
+
+{% endblock %}

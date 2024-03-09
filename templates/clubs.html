@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block title %}Player{% endblock %}
+{% block content %}
+    <section id="player">
+        <h1>Welcome to Our PlayeClubs page</h1>
+        <p>This is the homepage of Futbalmania</p>
+        <h1>Club Data</h1>
+
+        <h2>Countries</h2>
+
+        <div class="mt-2 mb-3"> 
+            <a href="{{ url_for('add_club') }}" class="btn btn-light w-100">
+                <i class="fas fa-plus"></i> Add Club
+            </a>
+        </div>
+        
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f5f5f5;
+                margin: 0;
+                padding: 0;
+            }
+    
+            #player {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: 20px;
+            }
+    
+            h1, h2, p {
+                color: #333333;
+            }
+    
+            h1 {        
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+    
+            h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+    
+            p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+    
+            .accordion-button {
+                background-color: #007bff;
+                color: #ffffff;
+                border: none;
+                border-radius: 5px;
+                padding: 10px;
+                cursor: pointer;
+            }
+    
+            .accordion-button:hover {
+                background-color: #0056b3;
+            }
+    
+            .accordion-body ul {
+                list-style: none;
+                padding: 0;
+            }
+    
+            .accordion-body li {
+                margin-bottom: 5px;
+            }
+    
+            a {
+                text-decoration: none;
+                color: #333333;
+            }
+    
+            a:hover {
+                color: #007bff;
+            }
+        </style>
+        
+        <ul id="country-filter">
+            {% for key, values in country.items() %}
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ loop.index }}" aria-expanded="false"
+                                    aria-controls="collapse{{ loop.index }}">
+                                {{ key }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ loop.index }}" class="accordion-collapse collapse"
+                             data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul>
+                                    {% for value1, value0 in values%}
+                                        <a href="{{ url_for('clubs_game', club_id=value0) }}"><li> {{ value1 }} </li></a>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+        
+        
+    </section>
+
+
+{% endblock %}

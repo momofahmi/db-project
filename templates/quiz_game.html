@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Quiz Game{% endblock %}
+{% block content %}
+<section id="player" class="quiz-section">
+    {% if submitted %}
+        <div class="quiz-result">
+            <h1>Quiz Result</h1>
+            {% if is_correct %}
+                <p class="text-success">Your answer is correct! Your score is now {{ score }}.</p>
+                <a href="{{ url_for('quiz_game') }}" class="btn btn-primary">Next Question</a>
+            {% else %}
+                <p class="text-danger">Oops! Your answer is incorrect. The correct answer was {{ correct_answer }}.</p>
+                <p>Your final score is {{ score }}.</p>
+                {% if game_over %}
+                    <p>Game Over. Thank you for playing!</p>
+                    <a href="{{ url_for('quiz_game') }}" class="btn btn-primary">Try Again</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    {% else %}
+        <h1>MCQ GAME</h1>
+        <p>Current Score: {{ session.score }}</p>
+        {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+        {% endif %}
+        <form action="{{ url_for('quiz_game') }}" method="post">
+            <div class="quiz-question">
+                <h3>Which national team does {{ q }} represent?</h3>
+            </div>
+            <div class="quiz-options">
+                {% for value in values %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ value }}">
+                        <label class="form-check-label" for="option{{ loop.index }}">
+                            {{ value }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="quiz-submit-button">Submit Answer</button>
+        </form>
+    {% endif %}
+</section>
+{% endblock %}

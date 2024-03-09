@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Player Details{% endblock %}
+{% block content %}
+<section class="container my-5">
+    <div class="card">
+        <div class="row no-gutters">
+            <div class="card-header">
+                <a href="{{ url_for('edit_appearance', appearance_id=appearance.appearance_id) }}" class="btn btn-outline-secondary float-end">
+                    <i class="fas fa-pen"></i>
+                </a>
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <h3 class="card-title"><i class="fas fa-user"></i> {{ appearance.player_name }}</h3>
+                    <p class="card-text"><strong><i class="fas fa-id-card"></i> Appearance Id:</strong> {{ appearance.appearance_id }}</p>
+                    <p class="card-text"><strong><i class="fas fa-futbol"></i> Game Id:</strong> {{ appearance.game_id }}</p>
+                    <p class="card-text"><strong><i class="fas fa-user-tag"></i> Player Id:</strong> {{ appearance.player_id }}</p>
+                    <p class="card-text"><strong><i class="fas fa-users"></i> Club Name:</strong> {{ appearance.clubs_name }}</p>
+                    <p class="card-text"><strong><i class="fas fa-users"></i> Current Club Name:</strong> {{ appearance.player_current_club_name }}</p>
+                    <p class="card-text"><strong><i class="far fa-calendar-alt"></i> Appearances Date:</strong> {{ appearance.appearances_date }}</p>
+                    <p class="card-text"><strong><i class="fas fa-trophy"></i> Competitions Name:</strong> {{ appearance.competitions_name }}</p>
+                    <p class="card-text"><strong><i class="fas fa-square" style="color: yellow;"></i> Yellow Cards:</strong> {{ appearance.yellow_cards }}</p>
+                    <p class="card-text"><strong><i class="fas fa-square" style="color: red;"></i> Red Cards:</strong> {{ appearance.red_cards }}</p>
+                    <p class="card-text"><strong><i class="fas fa-futbol"></i> Goals:</strong> {{ appearance.goals }}</p>
+                    <p class="card-text"><strong><i class="fas fa-hands-helping"></i> Assists:</strong> {{ appearance.assists }}</p>
+                    <p class="card-text"><strong><i class="fas fa-clock"></i> Minutes Played:</strong> {{ appearance.minutes_played }}</p>
+                </div>
+                    
+            </div>
+            <div class="mt-2 mb-3">
+                <a href="{{ url_for('games_details',game_id=appearance.game_id) }}" class="btn btn-light w-100">
+                    <i class="fas fa-plus"></i> GAME DETAILS LINK
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
